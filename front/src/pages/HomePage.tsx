@@ -105,13 +105,19 @@ const HomePage: React.FC = () => {
                 </div>
 
                 <form onSubmit={handleChatSubmit} className="flex w-full">
-                    <input
-                        type="text"
+                    <textarea
                         value={chatInput}
                         onChange={(e) => setChatInput(e.target.value)}
                         placeholder="Ask question..."
                         disabled={isLoading}
-                        className="flex-grow border-gray-300 border rounded-l-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="flex-grow border-gray-300 border rounded-l-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                        rows={1}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' && !e.shiftKey) {
+                                e.preventDefault();
+                                handleChatSubmit(e);
+                            }
+                        }}
                     />
                     <button
                         type="submit"
