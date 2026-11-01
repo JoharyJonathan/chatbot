@@ -1,1 +1,5 @@
+# Python compiled folders
 __pycache__/
+
+# environment file
+.env
